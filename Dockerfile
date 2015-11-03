@@ -18,11 +18,12 @@ ADD wp-config.php /app/wp-config.php
 RUN chmod 644 /app/wp-config.php
 
 # Fix permissions for apache
-RUN chown -R www-data:www-data /app
+RUN chown -R www-data:www-data /app /var/www/html
 
 # Add script to create 'wordpress' DB
 ADD run.sh run.sh
 RUN chmod 755 /*.sh
 
+VOLUME ["/var/www/html"]
 EXPOSE 80
 CMD ["/run.sh"]
