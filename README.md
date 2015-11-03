@@ -1,9 +1,7 @@
 docker-wordpress
 ================
-[![](https://badge.imagelayers.io/centurylink/wordpress.svg)](https://imagelayers.io/?images=centurylink/wordpress:latest 'Get your own badge on imagelayers.io')
-Out-of-the-box Wordpress docker image without MySQL
 
-Expose /var/www/html volume and port 80
+Out-of-the-box Wordpress docker image without MySQL and export wordpress installation directory
 
 Usage
 -----
@@ -21,11 +19,11 @@ Running your Wordpress docker image
 -----------------------------------
 Start and pull if needed MySQL/MariaDB image:
 
-docker run -d --name mysql-wordpress -e MYSQL_ROOT_PASSWORD=XXXXXXX -v //media/your_directory/mysql/:/var/lib/mysql mysql:latest
+	docker run -d --name mysql-wordpress -e MYSQL_ROOT_PASSWORD=XXXXXXX -v /media/your_directory/mysql/:/var/lib/mysql mysql:latest
 
 Start your image:
 
-	docker run -d --name wordepress -p 80:80 --link mysql-wordpress:mysql -v /media/your_directory:/var/www/html -d wordpress slobberbone/wordpress 
+	docker run -d --name wordpress -p 80:80 --link mysql-wordpress:mysql -e DB_PASSWORD=XXXXXXX -v /media/your_directory:/var/www/html -d wordpress slobberbone/wordpress 
 
 Test your deployment:
 
